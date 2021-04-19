@@ -1,0 +1,1 @@
+This directory contains Unix Basic Command line and Shell Scripting Assignments
