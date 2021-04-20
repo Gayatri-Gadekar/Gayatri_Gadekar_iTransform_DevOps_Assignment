@@ -7,17 +7,19 @@
 # Filtering that file into an appropriate loop, display all values with that file.
 # Finally, once complete, write a message with the time/date stamp to the file and close the descriptor.
 
-exec 3<myFile_17.txt
-until [$done]
-do
-	read <&3 var
-	if [[ $? != 0]]
-	then
-		done=1
-		continue
-	fi
-	echo $var
+exec 3< myFile_17.txt
+
+until [ $done ]
+do 
+  read <&3 var
+  if [[ $? -ne  0 ]];
+  then
+     done=1
+     continue
+   fi
+ echo $var
 done
+
 td=$(date)
 exec 4>> myFile_17.txt
 echo $td >&4

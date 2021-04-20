@@ -20,5 +20,5 @@ echo "Sum of $num_1 + $num_2 = $res1"
 res2=$(($res1*$num_3))
 echo "Sum of $num_1 + $num_2 multiply it with $num_3 = $res2"
 
-echo "$num_1 + $num_2 * $num_3 = " 
+echo "$num_1 + $num_2 * $num_3 = "
 res3= expr $num_1 + $num_2 \* $num_3

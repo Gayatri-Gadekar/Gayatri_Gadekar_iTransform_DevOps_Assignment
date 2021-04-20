@@ -8,11 +8,10 @@
 # Finally, display all variables and alias values when the script is run.
 
 TODAYSDATE=$(date)
-USERFILES= ls /home/gayatri/
+echo $TODAYSDATE
+USERFILES=  ls /mnt/c/Users/Gayatri/Desktop/Assignments/f.txt
 
-alias TODAY='$date'
-alias UFILES= USERFILES
-echo $TODAY
-echo $UFILES
-echo $TODATSDATE
+
+alias today='$date'
+echo $today
 echo $USERFILES

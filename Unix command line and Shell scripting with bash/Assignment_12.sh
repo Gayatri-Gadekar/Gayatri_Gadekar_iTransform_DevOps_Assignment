@@ -5,15 +5,14 @@
 # the final statement will display if they did not enter a number between 1 and 3 telling them they failed to follow instructions.
 # Redirect errors from each of the tests to /dev/null (to prevent script errors from showing if text is entered for example).
 
-echo "Enter number between 1 and 3 : "
+
+echo "Enter Number between 1 to 3 : "
 read num
-if [[ 0 -lt $num ]]
+
+if [[ $num -gt 0 ]] &&  [[ $num -lt 4 ]]
 then
-	if [[ $num -lt 4 ]]
-	then
-		echo "Correct Number"
-	else
-		echo "Number should be between 1 and 3"
-		echo "$num" > /dev/null
-	fi
+	echo "Correct"
+else
+	echo "Number should be between 1 and 3"
+	echo "$num" > /dev/null
 fi

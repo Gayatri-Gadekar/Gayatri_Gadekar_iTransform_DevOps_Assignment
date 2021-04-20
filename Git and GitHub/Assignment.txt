@@ -1,0 +1,745 @@
+Git and GitHub Assignment
+Section 0 - Use GIT as local VCS.---------------------------------------------------------------------
+Gayatri@LAPTOP-95INR2BP MINGW64 ~
+$ mkdir project_directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~
+$ cd project_directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory
+$ git init
+Initialized empty Git repository in C:/Users/Gayatri/project_directory/.git/
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git remote add origin https://github.com/Gayatri-Gadekar/demo2.git
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git init
+Reinitialized existing Git repository in C:/Users/Gayatri/project_directory/.git/
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ nano index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        index.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git add index.html
+warning: LF will be replaced by CRLF in index.html.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git commit -m "Adding index.html file"
+[master (root-commit) f3b77c9] Adding index.html file
+ 1 file changed, 5 insertions(+)
+ create mode 100644 index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ nano index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ nano info.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        info.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ nano .gitignore
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git add .gitignore
+warning: LF will be replaced by CRLF in .gitignore.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   .gitignore
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git add index.html
+warning: LF will be replaced by CRLF in index.html.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git commit -m "Updated index.html file"
+[master 5435e33] Updated index.html file
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitignore
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git log
+commit 5435e338a45ca01d0d36c51f191cb5256f450a61 (HEAD -> master)
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:03:55 2021 +0530
+
+    Updated index.html file
+
+commit f3b77c9ae02dd6f81e560bfa6cb67febc61b139e
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 14:51:14 2021 +0530
+
+    Adding index.html file
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ nano index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git log
+commit 5435e338a45ca01d0d36c51f191cb5256f450a61 (HEAD -> master)
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:03:55 2021 +0530
+
+    Updated index.html file
+
+commit f3b77c9ae02dd6f81e560bfa6cb67febc61b139e
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 14:51:14 2021 +0530
+
+    Adding index.html file
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git add index.html
+warning: LF will be replaced by CRLF in index.html.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git commit -m "one line added to index.html file"
+[master 8b2a622] one line added to index.html file
+ 1 file changed, 1 insertion(+)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git log
+commit 8b2a622be9f082d9e1a28babb045a0a8700a9a53 (HEAD -> master)
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:05:35 2021 +0530
+
+    one line added to index.html file
+
+commit 5435e338a45ca01d0d36c51f191cb5256f450a61
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:03:55 2021 +0530
+
+    Updated index.html file
+
+commit f3b77c9ae02dd6f81e560bfa6cb67febc61b139e
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 14:51:14 2021 +0530
+
+    Adding index.html file
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git revert 8b2a622be9f082d9e1a28babb045a0a8700a9a53
+[master c7e5c4b] Revert "one line added to index.html file"
+ 1 file changed, 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ nano index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git add index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git commit -m "one line added to index.html file"
+[master 87b7f04] one line added to index.html file
+ 1 file changed, 1 insertion(+)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git log
+commit 87b7f040f50243631fcebf0a33b04ff8fd4dccef (HEAD -> master)
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:13:28 2021 +0530
+
+    one line added to index.html file
+
+commit c7e5c4b7b269918d3469fa062bb2f529584627cc
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:06:04 2021 +0530
+
+    Revert "one line added to index.html file"
+
+    This reverts commit 8b2a622be9f082d9e1a28babb045a0a8700a9a53.
+
+commit 8b2a622be9f082d9e1a28babb045a0a8700a9a53
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:05:35 2021 +0530
+
+    one line added to index.html file
+
+commit 5435e338a45ca01d0d36c51f191cb5256f450a61
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:03:55 2021 +0530
+
+    Updated index.html file
+
+commit f3b77c9ae02dd6f81e560bfa6cb67febc61b139e
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 14:51:14 2021 +0530
+
+    Adding index.html file
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git revert 87b7f040f50243631fcebf0a33b04ff8fd4dccef
+[master fa89a3f] Revert "one line added to index.html file"
+ 1 file changed, 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git config --global alias.myadd add
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git myadd index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git commit -m "Updated the index.html"
+On branch master
+nothing to commit, working tree clean
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git log
+commit fa89a3fb21eac06883454ff10784857924160e4e (HEAD -> master)
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:14:17 2021 +0530
+
+    Revert "one line added to index.html file"
+
+    This reverts commit 87b7f040f50243631fcebf0a33b04ff8fd4dccef.
+
+commit 87b7f040f50243631fcebf0a33b04ff8fd4dccef
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:13:28 2021 +0530
+
+    one line added to index.html file
+
+commit c7e5c4b7b269918d3469fa062bb2f529584627cc
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:06:04 2021 +0530
+
+    Revert "one line added to index.html file"
+
+    This reverts commit 8b2a622be9f082d9e1a28babb045a0a8700a9a53.
+
+commit 8b2a622be9f082d9e1a28babb045a0a8700a9a53
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:05:35 2021 +0530
+
+    one line added to index.html file
+
+commit 5435e338a45ca01d0d36c51f191cb5256f450a61
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:03:55 2021 +0530
+
+    Updated index.html file
+
+commit f3b77c9ae02dd6f81e560bfa6cb67febc61b139e
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 14:51:14 2021 +0530
+
+    Adding index.html file
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git revert fa89a3fb21eac06883454ff10784857924160e4e
+[master 73f8bac] Revert "Revert "one line added to index.html file""
+ 1 file changed, 1 insertion(+)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git log
+commit 73f8bac5e16b32ceab4ede3509fccaffd3ea3ae8 (HEAD -> master)
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:18:53 2021 +0530
+
+    Revert "Revert "one line added to index.html file""
+
+    This reverts commit fa89a3fb21eac06883454ff10784857924160e4e.
+
+commit fa89a3fb21eac06883454ff10784857924160e4e
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:14:17 2021 +0530
+
+    Revert "one line added to index.html file"
+
+    This reverts commit 87b7f040f50243631fcebf0a33b04ff8fd4dccef.
+
+commit 87b7f040f50243631fcebf0a33b04ff8fd4dccef
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:13:28 2021 +0530
+
+    one line added to index.html file
+
+commit c7e5c4b7b269918d3469fa062bb2f529584627cc
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:06:04 2021 +0530
+
+    Revert "one line added to index.html file"
+
+    This reverts commit 8b2a622be9f082d9e1a28babb045a0a8700a9a53.
+
+commit 8b2a622be9f082d9e1a28babb045a0a8700a9a53
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:05:35 2021 +0530
+
+    one line added to index.html file
+
+commit 5435e338a45ca01d0d36c51f191cb5256f450a61
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 15:03:55 2021 +0530
+
+    Updated index.html file
+
+commit f3b77c9ae02dd6f81e560bfa6cb67febc61b139e
+Author: Gayatri0810 <56114353+Gayatri0810@users.noreply.github.com>
+Date:   Sun Apr 11 14:51:14 2021 +0530
+
+    Adding index.html file
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$ git push --set-upstream origin master
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (14/14), 1.33 KiB | 123.00 KiB/s, done.
+Total 14 (delta 6), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (6/6), done.
+To https://github.com/Gayatri-Gadekar/demo2.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/project_directory (master)
+$
+
+
+Git Branching ---------------------------------------------------------------------------------------
+Section 1 -  (HTML Assignment)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~
+$ mkdir Assignments
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~
+$ cd Assignments
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments
+$ git init
+Initialized empty Git repository in C:/Users/Gayatri/Assignments/.git/
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git remote add origin https://github.com/Gayatri-Gadekar/assignment.git
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ nano README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git add README.txt
+warning: LF will be replaced by CRLF in README.txt.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git commit README.txt
+warning: LF will be replaced by CRLF in README.txt.
+The file will have its original line endings in your working directory
+Aborting commit due to empty commit message.
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git add README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git commit -m "Adding README.txt file"
+[master (root-commit) 14baa69] Adding README.txt file
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git branch html-assignments
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git checkout html-assignments
+Switched to branch 'html-assignments'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ nano index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ git add index.html
+warning: LF will be replaced by CRLF in index.html.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ git commit -m "Added index.html file"
+[html-assignments aaec873] Added index.html file
+ 1 file changed, 5 insertions(+)
+ create mode 100644 index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ nano index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ git add index.html
+warning: LF will be replaced by CRLF in index.html.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ git commit -m "Made some changes to index.html file"
+[html-assignments a8e67b9] Made some changes to index.html file
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ git checkout master
+Switched to branch 'master'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ nano README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git add README.txt
+warning: LF will be replaced by CRLF in README.txt.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git commit -m "Made changes to README.txt file"
+[master 9c54ee7] Made changes to README.txt file
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git checkout html-assignments
+Switched to branch 'html-assignments'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ nano index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ git add index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ git commit -m "Again made changes to index.html file at html-assignments branch"
+[html-assignments 482a2fc] Again made changes to index.html file at html-assignments branch
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (html-assignments)
+$ git checkout master
+Switched to branch 'master'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git merge html-assignments
+Merge made by the 'recursive' strategy.
+ index.html | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 index.html
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ nano README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git branch -d html-assignments
+Deleted branch html-assignments (was 482a2fc).
+
+Section 2 - (Css Assignment)--------------------------------------------------------------------------
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git branch css-assignments
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git checkout css-assignments
+Switched to branch 'css-assignments'
+M       README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ nano mystyle.css
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ git add mystyle.css
+warning: LF will be replaced by CRLF in mystyle.css.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ git commit -m "Added mystyle.css file at css-assignments branch"
+[css-assignments f57d829] Added mystyle.css file at css-assignments branch
+ 1 file changed, 8 insertions(+)
+ create mode 100644 mystyle.css
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ nano README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ git add README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ git commit -m "Made changes to README.txt"
+[css-assignments 68f1b7d] Made changes to README.txt
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ git checkout master
+Switched to branch 'master'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ nano README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git add README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git commit -m "Made changes to README.txt at Master"
+[master 11fc6e1] Made changes to README.txt at Master
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git checkout css-assignments
+Switched to branch 'css-assignments'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ nano mystyles.css
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ nano mystyle.css
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ git add mystyle.css
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ git commit -m "Made changes to mystyle.css at css-assignments"
+[css-assignments 6a0836d] Made changes to mystyle.css at css-assignments
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (css-assignments)
+$ git checkout master
+Switched to branch 'master'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git merge css-assignments
+Auto-merging README.txt
+CONFLICT (content): Merge conflict in README.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+        new file:   mystyle.css
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   README.txt
+
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ vi README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ git merge css-assignments
+error: Merging is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ vi README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ git add README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ git commit -m "Sloved Merge Conflicts"
+[master b7dc833] Sloved Merge Conflicts
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git merge css-assignments
+Already up to date.
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git branch -d css-assignments
+Deleted branch css-assignments (was 6a0836d).
+
+Section 3 - (Java Script)-----------------------------------------------------------------------------
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git branch js-assignments
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git checkout js-assignments
+Switched to branch 'js-assignments'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ nano myscript.js
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ git add myscript.js
+warning: LF will be replaced by CRLF in myscript.js.
+The file will have its original line endings in your working directory
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ git commit -m "Added myscript.js"
+[js-assignments f586301] Added myscript.js
+ 1 file changed, 1 insertion(+)
+ create mode 100644 myscript.js
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ nano README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ git add README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ git commit -m "Changed README.txt at js-assignments"
+[js-assignments 703b278] Changed README.txt at js-assignments
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ git checkout master
+Switched to branch 'master'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ nano README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git add README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git commit -m "Changed README.txt at master"
+[master bb70467] Changed README.txt at master
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git checkout js-assignments
+Switched to branch 'js-assignments'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ nano myscript.js
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ git add myscript.js
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ git commit -m "Made changes to myscript.js at js-assignments"
+[js-assignments 5c69f41] Made changes to myscript.js at js-assignments
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (js-assignments)
+$ git checkout master
+Switched to branch 'master'
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git merge js-assignments
+Auto-merging README.txt
+CONFLICT (content): Merge conflict in README.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+        new file:   myscript.js
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   README.txt
+
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ vi README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ git add README.txt
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master|MERGING)
+$ git commit -m "Again sloved merge conflicts"
+[master f35fe3c] Again sloved merge conflicts
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git merge js-assignments
+Already up to date.
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git branch -d js-assignments
+Deleted branch js-assignments (was 5c69f41).
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$ git push --set-upstream origin master
+Enumerating objects: 43, done.
+Counting objects: 100% (43/43), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (39/39), done.
+Writing objects: 100% (43/43), 4.60 KiB | 188.00 KiB/s, done.
+Total 43 (delta 10), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (10/10), done.
+To https://github.com/Gayatri-Gadekar/assignment.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+Gayatri@LAPTOP-95INR2BP MINGW64 ~/Assignments (master)
+$
+
+Git Remoting -----------------------------------------------------------------------------------------
+Section 3 - (Pushing Assignment to Remote Repository)
+
+https://github.com/Gayatri-Gadekar/assignment
+
+Section 4 - (Pushing source code to remote repository using Eclipse GIT plugin)
+
+https://github.com/Gayatri-Gadekar/eclipse_demo 
