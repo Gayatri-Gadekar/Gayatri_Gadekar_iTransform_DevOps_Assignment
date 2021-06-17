@@ -67,8 +67,8 @@ Step 1 :
 main.tf
 
 provider "aws" {
-        access_key = "AKIARVXZDICYDCY6WG7Q"
-        secret_key = "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"
+        access_key = ""
+        secret_key = ""
         region = "${var.aws_region}"
 }
 resource "random_id" "tf_bucket_id" {
