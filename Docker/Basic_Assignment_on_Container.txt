@@ -1,0 +1,450 @@
+Assignment
+
+NOTE: Do not forget to see manual page using "--help" option in command when 
+searching for options/commands for a particular task.
+
+1. Install Docker, either on your native OS or on a VM. Make sure it runs. 
+   type "docker -v" to check if it's installed.
+   try below commands for help
+	docker --help  ---> This command shows all available options and 
+	commands to work with images and containers
+	docker images --help ---> This command shows all the avaialble options and 
+	commands to work with docker images
+	docker ps --help ---> This command shows all the avaialble options and 
+	commands to work with docker containers
+
+->	C:\Users\Gayatri>docker -v
+   	Docker version 20.10.6, build 370c289
+
+2. Find a image from dockerhub of your choice(recommeded: nginx), don't use browser, 
+pull the official image from dockerhub
+
+->	C:\Users\Gayatri>docker pull nginx
+	
+3. List all the available images in your machine/vm, make sure you see recently pulled 
+image in the list.
+
+->	C:\Users\Gayatri>docker images
+	REPOSITORY                    TAG       IMAGE ID       CREATED       SIZE
+	nginx                         latest    f0b8a9a54136   8 days ago    133MB
+
+4. Find out the "Full" ImageId of the image that you pulled and write it below.
+
+->	C:\Users\Gayatri>docker images --no-trunc
+	REPOSITORY                    TAG       IMAGE ID                                                                  CREATED       SIZE
+	nginx                         latest    sha256:f0b8a9a541369db503ff3b9d4fa6de561b300f7363920c2bff4577c6c24c5cf6   8 days ago    133MB
+
+5. Create a container of your image 
+
+->	C:\Users\Gayatri>docker run -d nginx
+	a1803ad1a11a2e43b16f447cfa572e8cd6ab867aa131b303a643e1c885656aad
+	
+6. List all the running containers
+
+->	C:\Users\Gayatri>docker ps
+	CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS              PORTS     NAMES
+	a1803ad1a11a   nginx     "/docker-entrypoint.…"   About a minute ago   Up About a minute   80/tcp    cranky_swartz
+
+7. List all the running and stopped containers
+
+->	C:\Users\Gayatri>docker ps -a
+	CONTAINER ID   IMAGE   COMMAND                 CREATED         STATUS         PORTS   NAMES
+	a1803ad1a11a   nginx   "/docker-entrypoint.…"  3 minutes ago   Up 3 minutes   80/tcp  cranky_swartz
+	OR
+	C:\Users\Gayatri>docker ps -aq
+	a1803ad1a11a
+
+8. Find out the "Full" containerId of the container and write it below.
+
+->	C:\Users\Gayatri>docker ps --no-trunc
+	CONTAINER ID                                                       IMAGE     COMMAND                                          CREATED         STATUS         PORTS     NAMES
+	a1803ad1a11a2e43b16f447cfa572e8cd6ab867aa131b303a643e1c885656aad   nginx     "/docker-entrypoint.sh nginx -g 'daemon off;'"   6 minutes ago   Up 6 minutes   80/tcp    cranky_swartz
+
+9. Find out how many image layers are used to build this image.
+
+->	C:\Users\Gayatri>docker history nginx
+	IMAGE          CREATED      CREATED BY                                      SIZE      COMMENT
+	f0b8a9a54136   8 days ago   /bin/sh -c #(nop)  CMD ["nginx" "-g" "daemon…   0B
+	<missing>      8 days ago   /bin/sh -c #(nop)  STOPSIGNAL SIGQUIT           0B
+	<missing>      8 days ago   /bin/sh -c #(nop)  EXPOSE 80                    0B
+	<missing>      8 days ago   /bin/sh -c #(nop)  ENTRYPOINT ["/docker-entr…   0B
+	<missing>      8 days ago   /bin/sh -c #(nop) COPY file:09a214a3e07c919a…   4.61kB
+	<missing>      8 days ago   /bin/sh -c #(nop) COPY file:0fd5fca330dcd6a7…   1.04kB
+	<missing>      8 days ago   /bin/sh -c #(nop) COPY file:0b866ff3fc1ef5b0…   1.96kB
+	<missing>      8 days ago   /bin/sh -c #(nop) COPY file:65504f71f5855ca0…   1.2kB
+
+10. Get the Apache Tomcat 7 server image from the docker hub.
+
+->	C:\Users\Gayatri>docker pull tomcat:7.0.90
+	7.0.90: Pulling from library/tomcat
+	f189db1b88b3: Pull complete
+	3d06cf2f1b5e: Pull complete
+	edd0da9e3091: Pull complete
+	eb7768aae14e: Pull complete
+	e2780f585e0f: Pull complete
+	e5ed720afeba: Pull complete
+	d9e134700cfc: Pull complete
+	e4804b33d02a: Pull complete
+	b9df0c24315e: Pull complete
+	1693417c311f: Pull complete
+	3c0f62a6c1dc: Pull complete
+	Digest: sha256:a88099801e4086f6b7d8ba8dc834624c39cafd9b78a453044ddf60365ef3dfa3
+	Status: Downloaded newer image for tomcat:7.0.90
+	docker.io/library/tomcat:7.0.90
+
+11. Run the Apache Tomcat 7, I mean create a container of Apache Tomcat.
+
+->	C:\Users\Gayatri>docker run -d tomcat:7.0.90
+	c70aad2c3a31614241c3df3b4609a8fc850802c2a21cac96614ca30c23c95381
+	
+	C:\Users\Gayatri>docker ps
+	CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS      NAMES
+	c70aad2c3a31   tomcat:7.0.90   "catalina.sh run"        2 minutes ago    Up 2 minutes    8080/tcp   hopeful_turing
+	a1803ad1a11a   nginx           "/docker-entrypoint.…"   15 minutes ago   Up 15 minutes   80/tcp     cranky_swartz
+
+12. Find out what is the IP Address of the Apache Tomcat Container that it is running on
+
+->	C:\Users\Gayatri>docker inspect --format '{{.NetworkSettings.IPAddress}}' a1803ad1a11a
+	'172.17.0.2'
+
+13. Which Port it is using?
+
+->	C:\Users\Gayatri>docker inspect --format '{{.NetworkSettings.Ports}}' a1803ad1a11a
+	'map[8080/tcp:[]]'
+
+14. Try to access the Tomcat's home page from your machine/vm.
+
+->	Step1 : docker run -it --rm 9090:8080 tomcat:7.0.90 --> Tomcat server will run on port 8888
+	Step2 : http://localhost:8080/  
+
+15. What is the disk size of Apache Tomcat image?
+
+->	C:\Users\Gayatri>docker ps --size
+	CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS      NAMES            SIZE
+	c70aad2c3a31   tomcat:7.0.90   "catalina.sh run"        17 minutes ago   Up 17 minutes   8080/tcp   hopeful_turing   38.9kB (virtual 357MB)
+
+16. Find out list of all environment variables that is configured for tomcat image, 
+can you see JAVA_HOME and CATALINA_HOME? What did you notice about it?
+
+->	C:\Users\Gayatri>docker exec c70aad2c3a31 env
+	JAVA_HOME=/docker-java-home/jre --> JAVA_HOME is an Environment Variable set to the location of the Java directory on our computer
+	CATALINA_HOME=/usr/local/tomcat --> CATALINA_HOME is the folder where Apache Tomcat is installed
+
+17. Find out which port is exposed for tomcat?
+
+->	C:\Users\Gayatri>docker inspect --format '{{.Config.ExposedPorts}}' c70aad2c3a31
+	'map[8080/tcp:{}]'
+
+18. Run multiple conntainers of tomcat on different port and access it's home page.
+
+->	Step 1 : 
+	C:\Users\Gayatri>docker run -d -p 8800:8080 tomcat:7.0.90
+	2e56db9f1e0ccf7e0ac16de4b576754db202942ad9e55b67b217964845fe8405
+
+	C:\Users\Gayatri>docker run -d -p 8888:8080 tomcat:7.0.90
+	3e3fe163ac721e01b7f1d32e4b3741cd3c0ef8945ad67df91431441d8ec0cf0b
+	
+	Step 2 : Check
+	http://localhost/8800
+	http://localhost/8888 --> This will access Tomcat's Home Page
+
+19. Pull ubuntu os from dockerhub, try to pull 2 images of ubuntu, Except the latest one.
+
+->	C:\Users\Gayatri>docker pull ubuntu:16.04
+	16.04: Pulling from library/ubuntu
+	80bce60046fa: Pull complete
+	55a738a15540: Pull complete
+	e19cf0706c62: Pull complete
+	de4cdd6c27d1: Pull complete
+	Digest: sha256:98afb2808ee1ec6aa4d7c8f8b82c6347b9ae156932f7186182b997f3d5616ebe
+	Status: Downloaded newer image for ubuntu:16.04
+	docker.io/library/ubuntu:16.04
+
+	C:\Users\Gayatri>docker pull ubuntu:18.04
+	18.04: Pulling from library/ubuntu
+	4bbfd2c87b75: Pull complete
+	d2e110be24e1: Pull complete
+	889a7173dcfe: Pull complete
+	Digest: sha256:04919776d30640ce4ed24442d5f7c1a8e4bd0e4793ed9469843cedaecb0d72fb
+	Status: Downloaded newer image for ubuntu:18.04
+	docker.io/library/ubuntu:18.04
+
+20. Run the container of ubuntu in attached mode.
+
+->	C:\Users\Gayatri>docker run -it ubuntu:18.04
+	root@8cfab4fe4a02:/# ls
+	bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+	root@8cfab4fe4a02:/# exit
+	exit	
+
+21. Run the container of another ubuntu in detached mode.
+
+->	C:\Users\Gayatri>docker run -d ubuntu:16.04
+	193b714fc0295ca8793835c4efb69ae4b60a049f51788a90be58533b7aa3cdb3
+
+22. Check how many ubuntu containers are running and stopped
+
+->	C:\Users\Gayatri>docker ps -a
+	CONTAINER ID   IMAGE            COMMAND                  CREATED              STATUS                          PORTS                                      NAMES
+	193b714fc029   ubuntu:16.04     "/bin/bash"              About a minute ago   Exited (0) About a minute ago                                              elastic_bassi
+	8cfab4fe4a02   ubuntu:18.04     "/bin/bash"              2 minutes ago        Exited (0) 42 seconds ago                                                  gallant_hodgkin
+	3e3fe163ac72   tomcat:7.0.90    "catalina.sh run"        9 minutes ago        Up 9 minutes                    0.0.0.0:8888->8080/tcp, :::8888->8080/tcp  amazing_kilby
+	2e56db9f1e0c   tomcat:7.0.90    "catalina.sh run"        9 minutes ago        Up 9 minutes                    0.0.0.0:8800->8080/tcp, :::8800->8080/tcp  flamboyant_diffie
+	c70aad2c3a31   tomcat:7.0.90    "catalina.sh run"        34 minutes ago       Up 34 minutes                   8080/tcp                                   hopeful_turing
+	a1803ad1a11a   nginx            "/docker-entrypoint.…"   48 minutes ago       Up 48 minutes                   80/tcp                                     cranky_swartz
+
+23. Is the tomcat container running? If no, start one.
+
+->	C:\Users\Gayatri>docker ps
+	CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+	3e3fe163ac72   tomcat:7.0.90   "catalina.sh run"        12 minutes ago   Up 12 minutes   0.0.0.0:8888->8080/tcp, :::8888->8080/tcp   amazing_kilby
+	2e56db9f1e0c   tomcat:7.0.90   "catalina.sh run"        13 minutes ago   Up 13 minutes   0.0.0.0:8800->8080/tcp, :::8800->8080/tcp   flamboyant_diffie
+	c70aad2c3a31   tomcat:7.0.90   "catalina.sh run"        37 minutes ago   Up 37 minutes   8080/tcp                                    hopeful_turing
+	a1803ad1a11a   nginx           "/docker-entrypoint.…"   51 minutes ago   Up 51 minutes   80/tcp                                      cranky_swartz
+
+24. Check the logs, generated by tomcat container(don't forget to make request to tomcat's home page to see the log).
+
+->	C:\Users\Gayatri>docker logs 3e3fe163ac72
+
+25. Check if ubuntu conatiner is running? If no, start one in attached mode to the terminal.
+
+->	C:\Users\Gayatri>docker run -it ubuntu:18.04
+	root@ba7c77931209:/#
+
+26. Login as root user in ubuntu container
+
+->	C:\Users\Gayatri>docker run -it ubuntu:18.04
+	root@ba7c77931209:/# whoami
+	root
+	
+27. Create a file with any name in root directory
+
+->	root@ba7c77931209:/# touch demo.txt
+
+28. Install software of your choice in ubuntu container using "apt-get install"
+
+->	root@ba7c77931209:/# apt-get update
+	root@ba7c77931209:/# apt-get install python
+
+29. Now exit the ubuntu shell, are you back to your host machine, if not, come back to the host machine.
+
+->	root@ba7c77931209:/# exit
+	exit
+
+	C:\Users\Gayatri>
+
+30. Check if the ubuntu container is running.
+
+->	C:\Users\Gayatri>docker ps
+	CONTAINER ID   IMAGE           COMMAND                  CREATED             STATUS             PORTS                                       NAMES
+	3e3fe163ac72   tomcat:7.0.90   "catalina.sh run"        33 minutes ago      Up 33 minutes      0.0.0.0:8888->8080/tcp, :::8888->8080/tcp   amazing_kilby
+	2e56db9f1e0c   tomcat:7.0.90   "catalina.sh run"        34 minutes ago      Up 34 minutes      0.0.0.0:8800->8080/tcp, :::8800->8080/tcp   flamboyant_diffie
+	c70aad2c3a31   tomcat:7.0.90   "catalina.sh run"        58 minutes ago      Up 58 minutes      8080/tcp                                    hopeful_turing
+	a1803ad1a11a   nginx           "/docker-entrypoint.…"   About an hour ago   Up About an hour   80/tcp                                      cranky_swartz 
+
+31. Create a new ubuntu container out of the same image as that previous container in attached mode.
+
+->	C:\Users\Gayatri>docker run -it ubuntu:18.04
+
+32. Login as a root user
+
+->	C:\Users\Gayatri>docker exec -it bea1b4380e18 bash
+
+33. Check if you can see the file created in previous container, you will not see the file 
+as well as software that you installed in the previous container. Now kill this Container.
+
+->	C:\Users\Gayatri>docker kill bea1b4380e18
+	bea1b4380e18
+
+34. Do you have the previous ubuntu container where you created the file and installed the software? 
+If no reapeat step 25 to 29.
+
+->	C:\Users\Gayatri>docker run -it ubuntu:18.04
+	root@0c0e6f95ddf6:/# touch demo.txt
+	root@0c0e6f95ddf6:/# ls
+	bin  boot  demo.txt  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+	root@0c0e6f95ddf6:/# apt-get update
+	root@0c0e6f95ddf6:/# apt-get install python
+
+35. Create an Image out of the existing container.
+
+->	C:\Users\Gayatri>docker run --name myimg ubuntu:18.04
+	root@f5c2288bb023:/#
+
+36. Now Create a Container out of this image and login into it to see if you can 
+see the file and software installed by you in the previous container.
+
+->	C:\Users\Gayatri>docker run -it myimg bash
+	root@f5c2288bb023:/#
+	
+
+37. Do you have running tomcat container? If yes, Stop it and kill all tomcat container.
+
+->	C:\Users\Gayatri>docker stop 3e3fe163ac72
+	C:\Users\Gayatri>docker kill 3e3fe163ac72
+	Error response from daemon: Cannot kill container: 3e3fe163ac72: Container 3e3fe163ac7242f05cfe57f4f6656d8a3245257a720158d32f7c12c6b549dd97 is not running
+	
+38. Create an index.html file with following code in it:-
+	<h1>This is Tomcat Container</h1>
+Now, Start a tomcat container in such a way that on hitting its URL for home page 
+it should show the above html page.
+
+->	C:\Users\Gayatri>docker run -d -p 8888:8080 tomcat:7.0.90
+	c7abd6301540cd95d03336c079a83577a19a79b09445f5f67eb240ebcceeea68
+
+	C:\Users\Gayatri>docker ps
+	CONTAINER ID   IMAGE           COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+	c7abd6301540   tomcat:7.0.90   "catalina.sh run"        8 seconds ago   Up 4 seconds   0.0.0.0:8888->8080/tcp, :::8888->8080/tcp   unruffled_northcutt
+	a1803ad1a11a   nginx           "/docker-entrypoint.…"   2 hours ago     Up 2 hours     80/tcp                                      cranky_swartz
+
+	C:\Users\Gayatri>docker exec -it c7abd6301540 bash
+	root@c7abd6301540:/usr/local/tomcat# ls
+	BUILDING.txt  CONTRIBUTING.md  LICENSE  NOTICE  README.md  RELEASE-NOTES  RUNNING.txt  bin  conf  include  lib  logs  native-jni-lib  temp  webapps  work
+	root@c7abd6301540:/usr/local/tomcat# cd webapps
+	root@c7abd6301540:/usr/local/tomcat/webapps# ls
+	ROOT  docs  examples  host-manager  manager
+	root@c7abd6301540:/usr/local/tomcat/webapps# cd ROOT
+	root@c7abd6301540:/usr/local/tomcat/webapps/ROOT# ls
+	RELEASE-NOTES.txt  asf-logo-wide.svg  bg-middle.png    bg-nav.png    favicon.ico  tomcat-power.gif  tomcat.gif  tomcat.svg
+	WEB-INF            bg-button.png      bg-nav-item.png  bg-upper.png  index.jsp    tomcat.css        tomcat.png
+	root@c7abd6301540:/usr/local/tomcat/webapps/ROOT# echo "<h1>This is Tomcat Container</h1>" >index.html
+	root@c7abd6301540:/usr/local/tomcat/webapps/ROOT# cat index.html
+	<h1>This is Tomcat Container</h1>
+	root@c7abd6301540:/usr/local/tomcat/webapps/ROOT# ls
+	RELEASE-NOTES.txt  asf-logo-wide.svg  bg-middle.png    bg-nav.png    favicon.ico  index.jsp         tomcat.css  tomcat.png
+	WEB-INF            bg-button.png      bg-nav-item.png  bg-upper.png  index.html   tomcat-power.gif  tomcat.gif  tomcat.svg
+	root@c7abd6301540:/usr/local/tomcat/webapps/ROOT#
+
+	Now check localhost:8888 which show This is Tomcat Container
+
+39. type below command:-
+	docker images --help
+Now, try to run command that proves the concept of following three options:-
+1. -a
+2. -f
+3. -q
+
+write atleast 1 command using each option above and prove their concepts as described in the --help.
+
+->	docker images -a --> -a, --all This will show all images (default hides intermediate images) 
+	docker images -f --no-trunc --> --no-trunc Don't truncate output 
+	docker images -q --> -q --quiet It will only show image IDs
+
+40. type below command:-
+	docker ps --help
+Now, try to run command that proves the concept of following six options:-
+1. -a
+2. -f
+3. -q
+4. -n
+5. -l
+6. -s
+
+write atleast 1 command using each option above and prove their concepts as described in the --help.
+
+->	docker ps -a --> (-a, --all This will show all containers (default shows just running))
+	docker ps -f "name=nginx" --> (-f, --filter filter This will filter output based on conditions provided)
+      	docker ps -n --> (-n, --last int This will show n last created containers (includes all states) (default -1))
+	docker ps -l --> (-l, --latest This will show the latest created container (includes all states))
+  	docker ps -q --> (-q, --quiet Only display container IDs)
+ 	docker ps -s --> (-s, --size It will Display total file sizes)
+
+41. Type below command:-
+	docker --help
+you will various sections of commands apart from options like "Managemnet Commands" and "Commands".
+Write some texts below describing the use of "Management Commands".
+
+->	Management command section consist of options that can be used with docker like image, volume, node, swarm.
+
+Use each command mentioned below and prove its concepts as described in the --help desription. 
+write what you have understood from the output of the command after its successful execution.
+1. cp
+2. create
+3. export
+4. history
+5. info
+6. login
+7. logout
+8. rename
+9. save
+10. stats
+11. top
+
+->     	docker cp img:/var/home --> (Copy files/folders between a container and the local filesystem) 
+     	docker create -t -i ubuntu bash --> (Create a new container)
+     	docker export ubuntu1 > latest.tar --> (Export a container’s filesystem as a tar archive)
+     	docker history ubuntu --> (Show the history of an image)
+     	docker info --> (Display system-wide information)
+     	docker login localhost:8080 --> (Log in to a Docker registry)
+     	docker logout localhost:8080 --> (Log out from a Docker registry)
+     	docker rename ubuntu1 myimg --> (Rename a container)
+     	docker save myimg--> (Save one or more images to a tar archive (streamed to STDOUT by default))
+     	docker stats --> (Display a live stream of container(s) resource usage statistics)
+     	docker top container --> (Display the running processes of a container)
+	
+42. Kill all running container in one liner command.
+
+->	docker container kill $(docker ps -q)
+
+43. Delete all images in one liner command.
+
+->	docker rmi $(docker images -a -q)
+
+44. Create a simple Dockerfile, build it and run it.
+
+->	Step 1 : vim Dockerfile 
+	Dockerfile Contents : -
+	#getting base image ubuntu
+	FROM ubuntu
+	RUN apt-get update //This gets executed during the build of image.
+	CMD [“echo”,”Hello world.! From my first docker image”] //This get executed only when you 
+	create container out of image.
+	//Save this File
+    	
+	Step 2 : docker build -t myimage .
+     	Step 3 : docker run -p 8800:8080 myimage
+
+45. Create one or more Dockerfile that demostrate the following commands in Dockerfile 
+(Write a PoC for each in one or more Dockerfile)
+	1. USER
+	2. RUN
+	3. ENV
+	4. CMD
+	5. RUN
+	6. ENTRYPOINT
+	7. EXPOSE
+	8. VOLUME
+
+->	Step 1 : vi Dockerfile
+		 FROM ubuntu
+		 MAINTAINER gayatri gadekar <gadekargayatri28@gmail.com>
+		 RUN apt-get update
+		 ENV var=Hello
+		 EXPOSE 90/udp
+		 ENTRYPOINT ["top","-b"]
+		 CMD ["echo","Hello World"]
+		 VOLUME /myvol
+	Step 2 : docker build -t mydockerimage .
+	Step 3 : docker run mydockerimage
+	
+46. Dockerhub:-
+	Find a application you care about on docker hub.
+	Launch the container.
+	Install another application in it.
+	Save (commit) the image.
+	Upload that to docker hub in your account and share it with a colleague, 
+ask them to use your image and run the container out of it in their machine/vm.
+
+->	Step 1 : C:\Users\Gayatri>docker pull ubuntu
+	Step 2 : C:\Users\Gayatri>docker run -it --name myimg ubuntu
+		 root@451521295dc8:/# apt-get update
+		 root@451521295dc8:/# apt-get install nginx
+		 root@71bd9697d8db:/# which nginx
+             	 root@71bd9697d8db:/# apt-get install curl
+             	 root@71bd9697d8db:/# service nginx start
+             	 root@71bd9697d8db:/# curl http://localhost:80
+             	 root@71bd9697d8db:/# exit
+    	Step 3 : docker commit mynginx gayatri08/myimg
+    	Step 4 : docker images 
+             	 docker login 
+    	Step 5 : docker push gayatri08/myimg

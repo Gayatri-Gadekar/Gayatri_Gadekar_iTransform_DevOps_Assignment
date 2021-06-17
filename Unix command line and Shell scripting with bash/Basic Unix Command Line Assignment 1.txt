@@ -1,0 +1,574 @@
+Objective:- Assignments will help trainees to understand the basics of unix command and how to explore and use it.
+
+DO NOT copy paste commands from internet, you can take help of the Unix in-built command manual.
+
+Be Honest to yourself!
+
+Important command and option to learn unix commands:-
+man Command
+Example:-
+man ls
+
+--help Option
+Example:-
+ls --help
+
+NOTE:- Always use "man" command before using any unix commands and read about it and its options and how to use it.
+
+Assignments:-
+
+1.List the contents of a directory and their attributes
+-> ls command is used to list the contents of a directory and their attributes
+-> Example : 
+	Gayatri@LAPTOP-95INR2BP ~
+	$ ls
+	dir1  dir2  dir3
+
+2.Long list the content with file, directory ownership, permissions,sizes, etc…
+-> ls -l command is used to long list the content with file, directory ownership, permissions,sizes,etc
+-> Example : 
+	Gayatri@LAPTOP-95INR2BP ~
+	$ ls -l
+	total 0
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:11 dir1
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:16 dir2
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:20 dir3
+
+3.Display the size of the file in human readable format
+-> ls with -l and -h options are used to display size of the file in human readable format
+-> Example :
+	Gayatri@LAPTOP-95INR2BP ~/dir1
+	$ ls -l -h
+	total 4.0K
+	-rwxr-xr-x 1 Gayatri Gayatri 2.9K Apr 15 16:15 file1.txt
+	
+4.Show all files and folders including hidden one
+-> ls -l -a is used to show all files and folders including hidden one
+-> Example :
+	Gayatri@LAPTOP-95INR2BP ~
+	$ ls -l -a
+	total 28
+	drwxr-xr-x+ 1 Gayatri Gayatri    0 Apr 15 16:22 .
+	drwxrwxrwt+ 1 Gayatri Gayatri    0 Apr 15 11:32 ..
+	-rw-------  1 Gayatri Gayatri 1495 Apr 15 16:09 .bash_history
+	-rwxr-xr-x  1 Gayatri Gayatri 1494 Apr 15 11:30 .bash_profile
+	-rwxr-xr-x  1 Gayatri Gayatri 5645 Apr 15 11:30 .bashrc
+	-rwxr-xr-x  1 Gayatri Gayatri 1919 Apr 15 11:30 .inputrc
+	-rwxr-xr-x  1 Gayatri Gayatri 1236 Apr 15 11:30 .profile
+	drwxr-xr-x+ 1 Gayatri Gayatri    0 Apr 15 16:11 dir1
+	drwxr-xr-x+ 1 Gayatri Gayatri    0 Apr 15 16:16 dir2
+	drwxr-xr-x+ 1 Gayatri Gayatri    0 Apr 15 16:20 dir3
+
+5.list directories recursively
+-> To list the directories recursively use -R and -l options with ls command
+-> Example :
+	Gayatri@LAPTOP-95INR2BP ~
+	$ ls -l -R
+	.:
+	total 0
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:11 dir1
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:16 dir2
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:20 dir3
+
+	./dir1:
+	total 4
+	-rwxr-xr-x 1 Gayatri Gayatri 2946 Apr 15 16:15 file1.txt
+	
+	./dir2:
+	total 1
+	-rwxr-xr-x 1 Gayatri Gayatri 430 Apr 15 16:19 file2.txt
+
+	./dir3:
+	total 1
+	-rwxr-xr-x 1 Gayatri Gayatri 473 Apr 15 16:22 file3.txt
+
+6.Sort the files by size with largest at the top
+-> ls with -S and -l option is used to sort the files by size with largest at the top
+-> Example :
+	Gayatri@LAPTOP-95INR2BP ~
+	$ ls -l -S
+	total 0
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:11 dir1
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:16 dir2
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:20 dir3
+
+7.Sort the files by last time modified displaying the newest first.
+-> ls command with -t and -l option is used to sort the files by last time modified displaying the newest first
+-> Example :
+	Gayatri@LAPTOP-95INR2BP ~
+	$ ls -l -t
+	total 0
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:20 dir3
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:16 dir2
+	drwxr-xr-x+ 1 Gayatri Gayatri 0 Apr 15 16:11 dir1
+	
+******8.Display the location of a program/command, where it is installed.
+-> To display location of a program 
+->
+
+9.Which command is used to switch directory from one to another
+-> cd directory is used to change the directory from one to another
+-> Example : 
+	Gayatri@LAPTOP-95INR2BP ~
+	$ cd dir1
+
+	Gayatri@LAPTOP-95INR2BP ~/dir1
+	$ pwd
+	/home/Gayatri/dir1
+
+10.List all the environment variables set for the current shell environment
+-> printenv command is used to list all the environment variables set for the current shell environment
+-> Example :
+	gayatri@LAPTOP-95INR2BP:/$ printenv
+	SHELL=/bin/bash
+	WSL_DISTRO_NAME=Ubuntu
+	NAME=LAPTOP-95INR2BP
+	PWD=/
+	LOGNAME=gayatri
+	MOTD_SHOWN=update-motd
+	HOME=/home/gayatri
+	LANG=C.UTF-8
+	LS_COLORS=rs=0:
+
+11.Did you notice something in the output of "env" command?
+-> Yes, env command keeps track of its own shell and environment variables and also prints a list of the current environment variables
+
+
+12.Which command is used to print the text or any variables value in the Console/Terminal?
+-> echo command is used to print the text or any variables value in the Console/Terminal
+-> Example :
+	Gayatri@LAPTOP-95INR2BP ~/dir1
+	$ echo "Hello, I am Gayatri !"
+	Hello, I am Gayatri !
+
+13.Print the value of the env variable "PATH" on the console
+-> To print the value of env variable "PATH" use command echo $PATH
+-> Example :
+	gayatri@LAPTOP-95INR2BP:/$ echo $PATH
+	/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_2004.2021.222.0_x64__79rhkp1fndgsc:/mnt/c/oraclexe/app/oracle/product/11.2.0/server/bin:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Intel/iCLS Client/:/mnt/c/Program Files/Intel/iCLS Client/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files (x86)/Java/jdk1.8.0_151/bin:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/WT Exp/:/mnt/c/Program Files/Microsoft SQL Server/110/Tools/Binn/:/mnt/c/Program Files/Git/cmd:/mn	t/c/Program Files/dotnet/:/mnt/c/Users/Gayatri/AppData/Local/Programs/Python/Python37-32/Scripts/:/mnt/c/Users/Gayatri/AppData/Local/Programs/Python/Python37-32/:/mnt/c/Users/Gayatri/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Gayatri/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/Gayatri/AppData/Roaming/npm:/mnt/c/Users/Gayatri/.dotnet/tools:/snap/bin
+
+14.Is linux a case-sensitive operating system?
+-> Yes, Linux is a case-sensitive operating system 
+-> Example : 
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	file1  file2
+	gayatri@LAPTOP-95INR2BP:~$ touch File1
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	File1  file1  file2
+
+15.Is, "Ls" same as "ls"?
+-> No, both are different, "Ls" gives us error that "command not found" where as "ls" shows list of the contents in directory. 
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	File1  file1  file2
+	gayatri@LAPTOP-95INR2BP:~$ Ls
+	Ls: command not found
+
+16.Display your currently logged in user
+-> whoami command is used to display currently logged in user
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ whoami
+	gayatri
+
+17.How do you change the currrently logged in user to another user?
+-> By using su - <another_user_name> we can change the currently logged in user to another user
+
+18.Which command is used to leave a shell environment that you are currently logged in to?
+-> exit command is used to leave a shell environment
+
+19.How do you reboot the system?
+-> To reboot the system use $sudo reboot and $sudo shutdown -r commands
+
+20.How do you shutdown the system?
+-> To shutdown the system use sudo shutdown command
+
+21.Display all the major running processes in the system
+-> To display all the major running processes in the system use ps -A command
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ ps -A
+  	PID TTY          TIME CMD
+  	1 ?        00:00:00 init
+  	427 tty1     00:00:00 init
+  	428 tty1     00:00:00 bash
+  	444 tty1     00:00:00 ps
+
+22.Understand the output of command used in above question of displaying processes, explain the meaning of each column and what data it displays?
+-> PID is a process id which is essential to kill or control the process on linux. 
+   TTY is the terminal name.
+   TIME is the running time of process
+   CMD is the name of command that launches the process.
+
+23.Display the name of the system kernel
+-> To display the name of the system kernel use uname -srm command
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ uname -srm
+	Linux 4.4.0-19041-Microsoft x86_64
+
+24.Display the kernel release number
+-> To display the kernel release number use uname -r command
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ uname -r
+	4.4.0-19041-Microsoft
+
+25.Display the machine type of the current kernel
+-> To display the machine type of the current kernel use uname -m command
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ uname -m
+	x86_64
+
+26.Display the name of the operating system that the kernel is running on
+-> To display the name of the operating system that the kernel is running on use uname -o command
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ uname -o
+	GNU/Linux
+
+27.Display all info that uname command can show.
+-> uname -a command is used to display all info that uname can show  
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ uname -a
+	Linux LAPTOP-95INR2BP 4.4.0-19041-Microsoft #488-Microsoft Mon Sep 01 13:43:00 PST 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+28.Display the name of directory that you are currently pointing to
+-> pwd command used to display currently pointing directory 
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ pwd
+	/home/gayatri
+
+29.Change the current directory to another directory that you have in your system.
+-> ch dir_name 
+-> Example : 
+	gayatri@LAPTOP-95INR2BP:~$ cd directory1/
+	gayatri@LAPTOP-95INR2BP:~/directory1$
+
+30.Go up one directory
+-> ch dir_name
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~/directory1$ cd directory2
+	gayatri@LAPTOP-95INR2BP:~/directory1/directory2$
+
+31.Return to last directory
+-> cd ../../
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~/directory1/directory2$ cd ../../
+	gayatri@LAPTOP-95INR2BP:~$
+
+32.change the current directory to home(logged in user's) directory
+-> cd home/ 
+-> Example :
+	gayatri@LAPTOP-95INR2BP:/$ cd home/
+	gayatri@LAPTOP-95INR2BP:/home$
+
+33.How to check all the command used from the prompt (Command History)
+-> history command is used to check all the commands we used so far in prompt 
+
+34.In which file the history of commands are stored in?
+-> The bash_history file contains all the history of commands.
+
+35.How many lines of history does the system keep and from where you can change it?
+-> Around 1000 lines of history the system keep & we can change it by editing the .bashrc file add HISTSIZE=500 & HISTFILESIZE=500 in that file.
+
+36.How can you modify bash's history behaviour
+-> Wa can add the changes we want to add in the .bashrc file to change the bash behaviour. 
+
+37.Display all the commands entered so far, now, try to run a particular command from the history list without typing that command.
+-> history command shows list of all the commands we run so far and to run command from history without typing the command press ctrl+R then enter.
+
+NOTE:- TAB key is your friend when it comes to command completion and having long file and directory names autocompleted at the bash prompt for you. JUST BE LAZY AND USE TAB KEY FOR AUTO COMPLETION ;-)
+
+38.What are the different types of shell and where are they used and how do we use them?
+-> Different Types of Shell :- 
+	1. The C Shell (csh) : It incorporated features such as aliases and command history.It includes helpful programming features like built-in arithmetic and C-like expression syntax.
+	2. The Bourne Shell (sh) : This shell is the original UNIX shell. It lacks features for interactive use like the ability to recall previous commands as well as built-in arithmetic and logical expression handling. This shell is faster and more preferred.
+	3. Korn Shell (ksh) : It is superset of the Bourne Shell, So this shell supports everything in the Bourne Shell. It is faster than C shell. It is compatible with script written for C shell. It includes features like built-in arithmetic and C-like arrays, functions, and string-manipulation facilities.
+	4. Bourne Again SHell (bash) :It is compatible to the Bourne shell. It includes features from Korn and Bourne shell.
+	
+-> Example :
+
+39.What is the difference between login shell and non-login shell?
+-> A login shell is created after a successful login of user whereas non-login shell is started by the login shell means a shell which is started from another shell.
+-> To find the current shell is login shell or non login shell simply we need to run below command
+-> Example : 
+	gayatri@LAPTOP-95INR2BP:/$ echo $0
+	-bash
+-> If we get hyphen (-) as prefix then this means that current shell is login shell.
+ 
+40.How do we start login shell and non-login shell?
+-> A Login shell is started after a successful login using /bin/login by reading the /etc/passwd file.
+-> Login shell is the first process that executes under our user ID when we log in to a session.
+-> A Non login shell is started by a program without a login.
+
+41.What happens when you start a login shell (which files are read and used and Why)?
+-> When Bash is invoked as Login Shell :
+	It first calls "/etc/profile" file which stores system-wide environment configurations and startup programs for login setup,
+	then reads and executes commands from this file, if the file exists.
+	After reading that file, it looks for "/etc/profile.d/" which stores shell scripts used to make custom changes to environment 
+	and "~/.bash_profile" which stores user specific environment and startup programs configurations
+	Then ~/.bash_profile calls "~/.bashrc" which stores user specific aliases and functions 
+	and ~/.bashrc calls "/etc/bashrc" which contains system-wide functions and aliases including other configurations that apply to all system users 
+
+42.What happens when you start a non-login shell (Which files are read and used and Why)?
+->When Bash is invoked as a Non login shell:
+	Non-login process(shell) first calls "~/.bashrc" file which stores user specific aliases and functions then
+	~/.bashrc calls "/etc/bashrc" file which contains system-wide functions and aliases including other configurations that apply to all system users
+	and then /etc/bashrc calls the scripts in "/etc/profile.d/" which stores shell scripts used to make custom changes to environment
+
+43.What are Shell Configuration Files, why do we need it?
+-> Shell configuration files are executed automatically when you log in and out of a shell.
+-> BASH defines three configurations files: .bash_profile, .bashrc, and .bash_logout.
+-> The .bash_profile contains initialization commands that set environment variables, a shell's prompt and so on.
+   and executed automatically when a user logs into a shell, along with .bashrc
+-> The .bashrc contains commands that configure the shell, define command aliases and set command shell options.
+-> The .bash_logout file is executed when the user logs out of a shell which contains cleanup operations and other commands that you want the shell to execute whenever a user logs out of a shell.
+
+44.Explain the Order of file usage from the system/user's home directory when user logs in to the System.
+-> 
+-> Example :
+
+45.What are Shell Variables, list major shell variables and what do they represent?
+-> A shell variable is a special variable that is set by the shell and is required by the shell in order to function correctly.
+-> There are two types of Shell Variables
+	1. Local Variables : A local variable is a variable that is present within the current instance of the shell.
+		VARIABLE_NAME= "value"
+		Example : 
+			gayatri@LAPTOP-95INR2BP:/$ MYVAR="Gayatri"
+			gayatri@LAPTOP-95INR2BP:/$ echo $MYVAR
+			Gayatri
+	2. Environment Variables : A environment variable is available system wide and can be used by other applications on the system
+	List of Environment Variables : 
+		a. USER - Shows User name
+		b. PATH - Shows a sequence of paths on our computer separated by colons
+		c. HOME - Shows default path to the user's home directory
+		d. EDITOR - Shows Path to the program which edits the content of files 
+		e. UID - Shows user's unique ID
+		f. TERM - Shows default terminal emulator
+		g. SHELL - Shows Shell being used by the user
+
+46.How we see all our env variables?
+-> To see all env variables, use the command env or printenv
+-> Example :
+	gayatri@LAPTOP-95INR2BP:/$ printenv
+	SHELL=/bin/bash
+	WSL_DISTRO_NAME=Ubuntu
+	NAME=LAPTOP-95INR2BP
+	PWD=/
+	LOGNAME=gayatri
+	MOTD_SHOWN=update-motd
+	HOME=/home/gayatri
+	LANG=C.UTF-8
+	LS_COLORS=rs=0:di=01;34:ln=01;
+	LESSCLOSE=/usr/bin/lesspipe %s %s
+	TERM=xterm-256color
+	LESSOPEN=| /usr/bin/lesspipe %s
+	USER=gayatri
+	SHLVL=1
+	WSLENV=
+	XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+	HOSTTYPE=x86_64
+	_=/usr/bin/printenv
+	OLDPWD=/
+
+47.How we see all env variables in alphabetical order?
+-> To see all env variables in alphabetical order use env and sort command
+-> Example :
+	gayatri@LAPTOP-95INR2BP:/$ env | sort
+	HOME=/home/gayatri
+	HOSTTYPE=x86_64
+	LANG=C.UTF-8
+	LESSCLOSE=/usr/bin/lesspipe %s %s
+	LESSOPEN=| /usr/bin/lesspipe %s
+	LOGNAME=gayatri
+	LS_COLORS=rs=0:di=01;34:ln=01;
+	MOTD_SHOWN=update-motd
+	NAME=LAPTOP-95INR2BP
+	OLDPWD=/
+	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:
+	PWD=/
+	SHELL=/bin/bash
+	SHLVL=0
+	TERM=xterm-256color
+	USER=gayatri
+	WSLENV=
+	WSL_DISTRO_NAME=Ubuntu
+	XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+	_=/usr/bin/env
+
+48.What Format does the env var and its values are stored?
+-> 
+-> Example :
+
+49.How do you create your own varible?
+-> To create own variable use following command
+-> Example :
+	gayatri@LAPTOP-95INR2BP:/$ MYNAME="Gayatri Gadekar"
+	gayatri@LAPTOP-95INR2BP:/$ echo $MYNAME
+	Gayatri Gadekar
+
+50.How do you start a new bash shell?
+-> 
+-> Example :
+
+51.Difference between Local/Shell variables to Global Variable
+-> Local variables can be used in the same shell & if we load new shell it will ignore all the variables of old shell.
+   Local variables are visible only within the block of code.
+   Global variables are those which we can export from old shell into the new shell.
+   Global variables are available to all shells i.e we can export them into any shell.
+
+52.Making a variable accessible from other the shell in the system.
+-> Global variables allows us to make them accessible from other shell in the system.
+
+53.Show the real life use case of exporting a variable
+-> 
+-> Example :
+
+54.Convert the above script file into a command, The file should run with "myappp" instead of "myapp.sh"
+-> 
+-> Example :
+
+55.What is Globbing? Explain in depth with examples?
+-> Bash shell feature that is used for matching or expanding specific types of patterns is called as globbing.
+   Globbing is used to match file names or for searching content in files.globbing uses wildcard charecters to create the pattern.
+   Suppose, to search those files whose name is five characters long so by using global we can do this 
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ ls -l ?????
+	-rw-r--r-- 1 gayatri gayatri    0 Apr 17 16:47 File1
+	-rw-r--r-- 1 gayatri gayatri   14 Apr 17 16:20 file1
+	-rw-r--r-- 1 gayatri gayatri    0 Apr 17 16:20 file2
+
+	demo1:
+	total 0
+	drwxr-xr-x 1 gayatri gayatri 4096 Apr 17 16:40 demo2
+
+56.List all entries with extension ".sh"
+-> ls -l *.sh is used to list all entries with .sh extension
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ ls -l *.sh
+	-rw-r--r-- 1 gayatri gayatri 0 Apr 17 17:31 d1.sh
+	-rw-r--r-- 1 gayatri gayatri 0 Apr 17 17:31 d2.sh
+
+57.List all entries with numbers in it.
+-> ls -l [0-9]* is used to list all entries with numbers in it
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ ls -l [0-9]*
+	-rw-r--r-- 1 gayatri gayatri 0 Apr 17 17:33 01.txt
+	-rw-r--r-- 1 gayatri gayatri 0 Apr 17 17:33 02.sh
+	-rw-r--r-- 1 gayatri gayatri 0 Apr 17 17:33 03
+
+58.List all entries that starts with a character and ends with a number
+-> ls [a-z]*[0-9]* is used to list all entries that starts with a character and ends with a number
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ ls [a-z]*[0-9]*
+	d1.sh  d2.sh  file1  file2
+
+	demo1:
+	demo2
+
+	directory1:
+	cd  directory1  directory2
+
+59.List all entries that name length more than 5 characters
+-> 
+-> Example :
+
+60.What is Quoting? and Why do we need it?
+-> Quoting is used when we want to stop termination of word having special meaning.
+   Single quote= all the charecters between this quote losses their special meaning.
+   Double quote= most charecters between this quote losses their special meaning.
+   Backslash= any charecter immediatly follwed by this losses its special meaning.
+   Back quote= anything in between backquote would be treated as command & treated as executed.
+
+61.Write few(minimum 3) unique examples that shows, how a particular problem is solved using Quoting.
+-> 	1. 	
+	gayatri@LAPTOP-95INR2BP:~$ echo Hello World ;
+	Hello World
+	gayatri@LAPTOP-95INR2BP:~$ echo Hello World \;
+	Hello World ;
+	2.
+	gayatri@LAPTOP-95INR2BP:~$ echo "Hello World"
+	Hello World
+	gayatri@LAPTOP-95INR2BP:~$ echo \"Hello World\"
+	"Hello World"
+	3.
+	gayatri@LAPTOP-95INR2BP:~$ echo Hello World :)
+	-bash: syntax error near unexpected token `)'
+	gayatri@LAPTOP-95INR2BP:~$ echo Hello World :\)
+	Hello World :)
+
+62.How do you find a particular files/directories based on a particular search criteria?
+HINT:- look for commands -> locate, find and whereis
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ find . -name myfile.txt
+	./demo1/demo2/demo3/myfile.txt
+
+63.Write major difference between locate, find and whereis?
+-> Find is used to search by particular criteria in a directory.
+   Locate is used when we dont know the exact location of file where it is & it performs search in "mlocate.db".
+   Whereis returns the location of the executable like absolute path of the binary.
+
+64.How Globbing is different from locate, find and whereis?
+-> 
+-> Example :
+
+65.Explain the Linux File System.
+-> Linux file system is structured collection of files on disk or partition.A partition is a container for information and can span an entire hard drive if desired. 
+   Linux file system contains the following sections :
+	1. The root directory
+	2. A specific data storage format
+	3. A partition or logical volume having a perticular file system.
+
+66.Explain absolute and Relative Paths
+-> Absolute Path : It is defined as the specifying the location of a file or directory from the root derectory.
+   Relative Path : It is defined as the path related to the present working directly(pwd).
+
+67.What are the different ways of creating a File in linux System? Write an example of each and the difference between them.
+-> we can create files using following commands
+	1. cat : Used to create and list file with contents
+	2. touch : Used to create empty file
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ cat > file1
+	This is file1
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	file1
+	gayatri@LAPTOP-95INR2BP:~$ touch file2
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	file1  file2
+
+68.In how many ways we can delete the files from linux system? write an example of each and the difference between them.
+-> We can delete the files using rm command in linux system
+	1. rm <filename> : Used to delete only one file
+	2. rm <file1> <file2> <file3> : Used to delete multiple files which are mentioned 
+	3. rm * : Used to delete all the files
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	f1.txt  f2.txt  f3.txt  f4.txt  f5.txt  f6.txt
+	gayatri@LAPTOP-95INR2BP:~$ rm f1.txt
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	f2.txt  f3.txt  f4.txt  f5.txt  f6.txt
+	gayatri@LAPTOP-95INR2BP:~$ rm f2.txt f3.txt
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	f4.txt  f5.txt  f6.txt
+	gayatri@LAPTOP-95INR2BP:~$ rm *
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	gayatri@LAPTOP-95INR2BP:~$
+
+69.Archiving files using linux command, write a command to archive set of files from linux commands.
+-> tar command is used to archive files
+-> Example : 
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	f1.txt  f2.txt  f3.txt
+	gayatri@LAPTOP-95INR2BP:~$ tar cvf myarchive.tar f1.txt f2.txt f3.txt
+	f1.txt
+	f2.txt
+	f3.txt
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	f1.txt  f2.txt  f3.txt  myarchive.tar
+	
+70.Extract the archived files from the above step.
+-> tar command is used to extract archived files 
+-> Example :
+	gayatri@LAPTOP-95INR2BP:~$ tar xvf myarchive.tar
+	f1.txt
+	f2.txt
+	f3.txt
+	gayatri@LAPTOP-95INR2BP:~$ ls
+	f1.txt  f2.txt  f3.txt  myarchive.tar

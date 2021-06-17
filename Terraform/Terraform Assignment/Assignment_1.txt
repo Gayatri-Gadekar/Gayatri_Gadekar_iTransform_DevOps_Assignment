@@ -1,0 +1,60 @@
+Create a file called main.tf.
+Create a docker image resource and call it nginx_image. Set the name of the image to nginx:latest. Save and exit the file. 
+Initialize Terraform.
+Plan the deploy and output a terraform plan called tf_image_plan.
+Apply the plan using tf_image_plan.
+
+Step 1 : Create main.tf file, Save this file
+nano main.tf 
+terraform {
+        required_providers {
+        docker = {
+                source = "kreuzwerker/docker"
+                version = "2.12.0"
+                }
+        }
+}
+
+provider "docker" {
+        host = "npipe:////.//pipe//docker_engine"
+}
+
+resource "docker_image" "nginx_image" {
+        name = "nginx:latest"
+}
+
+Step 2 : Initialize Terraform
+terraform init
+Terraform has been successfully initialized!
+
+Step 3 : Plan the deploy and output a terraform plan
+terraform plan -out=tf_image_plan
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_image.nginx_image will be created
+  + resource "docker_image" "nginx_image" {
+      + id     = (known after apply)
+      + latest = (known after apply)
+      + name   = "nginx:latest"
+      + output = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: tf_image_plan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "tf_image_plan"
+
+Step 4 : Apply the plan using tf_image_plan
+terraform apply tf_image_plan
+docker_image.nginx_image: Creating...
+docker_image.nginx_image: Creation complete after 0s [id=sha256:f0b8a9a541369db503ff3b9d4fa6de561b300f7363920c2bff4577c6c24c5cf6nginx:latest]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.

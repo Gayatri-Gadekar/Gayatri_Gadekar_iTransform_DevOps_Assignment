@@ -1,0 +1,146 @@
+Adding Maps and Lookups in your Terraform files
+The lab files can be found @ https://github.com/satyensingh/terraform-assignment-resources.git
+In the repo you will find main.tf, outputs.tf, and variables.tf.
+
+Add a new variable called env. Set a description to “env: dev or prod”.
+
+Convert the type from image_name to map.
+
+Change the default to use key/value pairs. Set dev to ghost:latest and prod to ghost:alpine.
+
+Convert container_name to a map. Change the default to use key/value pairs. 
+Set dev to blog_dev and prod to blog_prod.
+
+Convert ext_port to a map. Change the default to use key/value pairs. 
+Set dev to 8080 and prod to 80.
+
+Now initialize Terraform.
+
+Setup the Development environment
+Create a workspace called dev.
+Generate a Terraform plan. Output the plan and call it tfdev_plan. 
+Pass in a variable called env and set it to dev.
+Apply tfdev_plan.
+
+Setup the Production environment
+Create a workspace called prod.
+Generate a Terraform plan. Output the plan and call it tfprod_plan. 
+Pass in a variable called env and set it to prod.
+Apply tfprod_plan.
+
+Verify both environments work
+Open a browser and navigate to the public IP. This should pull up the production environment.
+Open a browser tab and navigate to the public IP on port 8080. This should pull up 
+the development environment.
+
+Step 1 : 
+main.tf 
+
+terraform {
+        required_providers {
+                docker = {
+                        source = "kreuzwerker/docker"
+                        version = "2.12.0"
+                }
+        }
+}
+
+provider "docker" {
+        host = "npipe:////.//pipe//docker_engine"
+}
+
+resource "docker_image" "image_id" {
+        name = "${lookup(var.image_name, var.env)}"
+}
+
+resource "docker_container" "container_id" {
+        name  = "${lookup(var.container_name, var.env)}"
+        image = "${docker_image.image_id.latest}"
+        ports {
+                internal = "2368"
+                external = "${lookup(var.ext_port, var.env)}"
+        }
+}
+
+variables.tf 
+
+variable "env" {
+        description = "env: dev or prod"
+}
+
+variable "image_name" {
+        type = map(string)
+        description = "Image for container."
+        default = {
+                dev  = "ghost:latest"
+                prod = "ghost:alpine"
+        }
+}
+
+variable "container_name" {
+        type = map(string)
+        description = "Name of the container."
+        default = {
+                dev  = "blog_dev"
+                prod = "blog_prod"
+        }
+}
+
+variable "ext_port" {
+        type = map(string)
+        description = "External port for container."
+        default = {
+                dev  = "8081"
+                prod = "80"
+        }
+}
+
+Step 2 : Initialize Terraform 
+terraform init
+Terraform has been successfully initialized!
+
+Step 3 : Setup the Development environment
+	 Create a workspace called dev.
+	 Generate a Terraform plan. Output the plan and call it tfdev_plan. 
+	 Pass in a variable called env and set it to dev.
+	 Apply tfdev_plan.
+
+terraform workspace new dev
+Created and switched to workspace "dev"!
+
+terraform plan -out=tfdev_plan -var env=dev
+
+terraform apply tfdev_plan
+docker_image.image_id: Creating...
+docker_image.image_id: Creation complete after 0s [id=sha256:c908524b592085e0095db3208cef17112d13eb6c5a56d870b576c79fa26e6032ghost:latest]
+docker_container.container_id: Creating...
+docker_container.container_id: Creation complete after 5s [id=c2e014e37eb480f64069b66cfedac37c6c4ffc2cd6c23698362153e81efc5203]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+container_name = "blog_dev"
+ip_address = "172.17.0.3"
+
+Step 4 : Setup the Production environment
+	 Create a workspace called prod.
+ 	 Generate a Terraform plan. Output the plan and call it tfprod_plan. 
+ 	 Pass in a variable called env and set it to prod.
+	 Apply tfprod_plan.
+
+terraform workspace new prod
+Created and switched to workspace "prod"!
+
+terraform plan -out=tfprod_plan -var env=prod
+
+terraform apply tfprod_plan
+docker_container.container_id: Creating...
+docker_container.container_id: Creation complete after 4s [id=0d77f367dc470e075487bb6cd7f7e6d0c07780e770fa581269b941380699d3c4]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+container_name = "blog_prod"
+ip_address = "172.17.0.2"

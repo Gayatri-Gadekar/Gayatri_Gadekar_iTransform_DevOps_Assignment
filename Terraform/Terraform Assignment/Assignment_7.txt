@@ -1,0 +1,133 @@
+Using Join and Count to Create Multiple S3 Buckets
+
+Find three files as below:-
+
+main.tf :-
+---------
+provider "aws" {
+  region = "${var.aws_region}"
+}
+
+resource "random_id" "tf_bucket_id" {
+  byte_length = 2
+}
+
+resource "aws_s3_bucket" "tf_code" {
+    bucket        = "${var.project_name}-${random_id.tf_bucket_id.dec}"
+    acl           = "private"
+
+    force_destroy =  true
+
+    tags= {
+      Name = "tf_bucket"
+    }
+}
+
+
+variables.tf:-
+--------------
+variable "aws_region" {
+  default = "us-east-1"
+}
+
+variable "project_name" {
+  default = "la-terraform"
+}
+
+
+outputs.tf:-
+-------------
+output "bucketname" {
+  value = "${aws_s3_bucket.tf_code.id}"
+}
+
+Update the Variables File:-
+Edit variables.tf.
+Add a new variable number_of_instances.
+Set the the default to 2.
+
+Update the Main File:-
+Update random_id and add a count.
+Set the value count to use the number_of_instances variable.
+Update aws_s3_bucket and add a count.
+Update random_id.tf_bucket_id.dec so it iterates through the count. 
+Update the Name tag so that tf_bucket is appended with the count index plus one.
+
+Update the Outputs File:-
+Update the bucketname output value to use the join function so that it returns a 
+comma delimited list of bucket names.
+
+Deploy the Infrastructure:-
+Initialize Terraform.
+Validate the files.
+Deploy the S3 buckets.
+
+Step 1 :
+
+main.tf
+
+provider "aws" {
+        access_key = "AKIARVXZDICYDCY6WG7Q"
+        secret_key = "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"
+        region = "${var.aws_region}"
+}
+resource "random_id" "tf_bucket_id" {
+        byte_length = 2
+        count = var.number_of_instances
+}
+resource "aws_s3_bucket" "tf_code" {
+        count = var.number_of_instances
+        bucket="${var.project_name}-${random_id.tf_bucket_id[count.index].dec}"
+        acl = "private"
+        force_destroy =  true
+        tags = {
+                Name = "tf_bucket_${count.index + 1}"
+        }
+}
+
+variables.tf
+
+variable "aws_region" {
+        default = "us-east-1"
+}
+
+variable "project_name" {
+        default = "la-terraform"
+}
+
+variable "number_of_instances" {
+        default = 2
+}
+
+outputs.tf
+
+output "bucketname" {
+        value = join(",", [aws_s3_bucket.tf_code[0].bucket, aws_s3_bucket.tf_code[1].bucket])
+
+}
+
+Step 2 : 
+terraform init
+Terraform has been successfully initialized!
+
+terraform validate
+Success! The configuration is valid.
+
+terraform plan -out=tfplan
+terraform apply "tfplan"
+random_id.tf_bucket_id[0]: Creating...
+random_id.tf_bucket_id[1]: Creating...
+random_id.tf_bucket_id[1]: Creation complete after 0s [id=GDQ]
+random_id.tf_bucket_id[0]: Creation complete after 0s [id=DMQ]
+aws_s3_bucket.tf_code[0]: Creating...
+aws_s3_bucket.tf_code[1]: Creating...
+aws_s3_bucket.tf_code[0]: Still creating... [10s elapsed]
+aws_s3_bucket.tf_code[1]: Still creating... [10s elapsed]
+aws_s3_bucket.tf_code[1]: Creation complete after 18s [id=la-terraform-6196]
+aws_s3_bucket.tf_code[0]: Creation complete after 18s [id=la-terraform-3268]
+
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+bucketname = "la-terraform-3268,la-terraform-6196"

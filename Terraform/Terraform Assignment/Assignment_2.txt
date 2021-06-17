@@ -1,0 +1,95 @@
+Create a new Terraform file called main.tf.
+Create three variables.
+The first variable, called image_name, needs to be set to ghost:latest.
+The second variable is called container_name with a default of ghost_blog.
+The final variable is called ext_port and set the default to port 80.
+
+Create a Docker image resource called ghost_image that uses the image_name variable.
+
+Create a Docker container resource called ghost_container.
+The name will use the container_name variable.
+The image will use the ghost_image resource.
+The internal port will be set to 2368.
+The external port will use ext_port variable.
+
+Initialize Terraform.
+
+Create a Terraform plan that uses the following variables:
+
+container_name = ghost_blog1
+image_name = ghost:alpine
+ext_port = 8080
+Output the plan to a file called tfplan.
+
+Then apply the plan using tfplan and make sure that the apply doesn’t prompt for input.
+
+Step 1 : main.tf
+
+terraform {
+        required_providers {
+                docker = {
+                        source = "kreuzwerker/docker"
+                        version = "2.12.0"
+                }
+        }
+}
+
+provider "docker" {
+        host = "npipe:////.//pipe//docker_engine"
+}
+
+variable "image_name" {
+        default = "ghost:latest"
+}
+
+variable "container_name" {
+        default = "ghost_blog"
+}
+
+variable "ext_port" {
+        default = "80"
+}
+
+resource "docker_image" "ghost_image" {
+        name = "${var.image_name}"
+}
+
+resource "docker_container" "ghost_container" {
+        name  = "${var.container_name}"
+        image = "${docker_image.ghost_image.latest}"
+        ports {
+                internal = "2368"
+                external = "${var.ext_port}"
+        }
+}
+
+Step 2 : Initialize Terraform.
+
+terraform init
+Terraform has been successfully initialized!
+
+Step 3 : 
+terraform plan -var 'container_name=ghost_blog1' -out tfplan
+terraform plan -var 'image_name=ghostLalpine' -out tfplan
+terraform plan -var 'ext_port=8080' -out tfplan
+
+Step 4 :
+terraform plan -out tfplan
+
+Step 5 : 
+terraform apply "tfplan"
+docker_image.ghost_image: Creating...
+docker_image.ghost_image: Still creating... [10s elapsed]
+docker_image.ghost_image: Still creating... [20s elapsed]
+docker_image.ghost_image: Still creating... [30s elapsed]
+docker_image.ghost_image: Still creating... [40s elapsed]
+docker_image.ghost_image: Still creating... [50s elapsed]
+docker_image.ghost_image: Still creating... [1m0s elapsed]
+docker_image.ghost_image: Still creating... [1m10s elapsed]
+docker_image.ghost_image: Still creating... [1m20s elapsed]
+docker_image.ghost_image: Creation complete after 1m21s [id=sha256:c908524b592085e0095db3208cef17112d13eb6c5a56d870b576c79fa26e6032ghost:latest]
+docker_container.ghost_container: Creating...
+docker_container.ghost_container: Still creating... [10s elapsed]
+docker_container.ghost_container: Creation complete after 18s [id=712cca1854f179371bc752b79766126629498c74672cb7f2b29ba3503ee4d1f9]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
